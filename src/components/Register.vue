@@ -15,6 +15,7 @@
       placeholder="password"
     >
     <br>
+    <div :key=error v-for="error in errors">{{error}}</div>
     <button @click="register">Register</button>
   </div>
 </template>
