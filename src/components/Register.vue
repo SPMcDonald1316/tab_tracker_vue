@@ -1,11 +1,16 @@
 <template>
-  <v-layout column>
-    <v-flex xs6 offset-xs3>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
+  <v-layout column justify-center>
+    <v-flex>
+      <v-card
+        elevation="2"
+        outlined
+        class="mx-auto"
+        width="700px"
+      >
+        <v-toolbar dense class="cyan" dark>
+          <v-toolbar-title col>Register</v-toolbar-title>
         </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2">
+        <form class="pl-4 pr-4 pt-2 pb-2">
           <v-text-field
             label="Email"
             v-model="email"
@@ -17,9 +22,9 @@
           ></v-text-field>
           <br>
           <div :key=error v-for="error in errors">{{error}}</div>
-          <v-btn class="cyan" @click="register">Register</v-btn>
-        </div>
-      </div>
+          <v-btn class="cyan" dark @click="register">Register</v-btn>
+        </form>
+      </v-card>
     </v-flex>
   </v-layout>
 </template>
