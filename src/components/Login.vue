@@ -13,11 +13,13 @@
         <form class="pl-4 pr-4 pt-2 pb-2">
           <v-text-field
             label="Email"
+            type="email"
             v-model="email"
           ></v-text-field>
           <br>
           <v-text-field
             label="Password"
+            type="password"
             v-model="password"
           ></v-text-field>
           <br>
