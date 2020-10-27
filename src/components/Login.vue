@@ -8,7 +8,7 @@
         width="700px"
       >
         <v-toolbar dense class="cyan" dark>
-          <v-toolbar-title col>Register</v-toolbar-title>
+          <v-toolbar-title col>Login</v-toolbar-title>
         </v-toolbar>
         <form class="pl-4 pr-4 pt-2 pb-2">
           <v-text-field
@@ -22,7 +22,7 @@
           ></v-text-field>
           <br>
           <div :key=error v-for="error in errors">{{error}}</div>
-          <v-btn class="cyan" dark @click="register">Register</v-btn>
+          <v-btn class="cyan" dark @click="login">Login</v-btn>
         </form>
       </v-card>
     </v-flex>
@@ -40,17 +40,23 @@ export default {
     }
   },
   methods: {
-    register () {
+    login () {
       const params = {
         email: this.email,
         password: this.password
       }
-      axios.post('/api/users', params)
+      axios.post('/api/sessions', params)
         .then(response => {
-          this.$router.push('/login')
+          axios.defaults.headers.common.Authorization =
+            `Bearer ${response.data.jwt}`
+          localStorage.setItem('jwt', response.data.jwt)
+          this.$router.push('/')
         })
         .catch(error => {
-          this.errors = error.response.data.errors
+          console.log(error)
+          this.errors = ['Invalid email or password.']
+          this.email = ''
+          this.password = ''
         })
     }
   }
