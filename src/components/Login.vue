@@ -1,31 +1,29 @@
 <template>
   <v-layout column justify-center>
     <v-flex>
-      <v-card
-        elevation="2"
-        outlined
-        class="mx-auto"
-        width="700px"
-      >
+      <v-card class="white elevation-2">
         <v-toolbar dense class="cyan" dark>
-          <v-toolbar-title col>Login</v-toolbar-title>
+          <v-toolbar-title>Login</v-toolbar-title>
         </v-toolbar>
-        <form class="pl-4 pr-4 pt-2 pb-2">
-          <v-text-field
-            label="Email"
-            type="email"
-            v-model="email"
-          ></v-text-field>
-          <br>
-          <v-text-field
-            label="Password"
-            type="password"
-            v-model="password"
-          ></v-text-field>
-          <br>
-          <div :key=error v-for="error in errors">{{error}}</div>
-          <v-btn class="cyan" dark @click="login">Login</v-btn>
-        </form>
+
+        <div class="pl-4 pr-4 pt-2 pb-2">
+          <form>
+            <v-text-field
+              label="Email"
+              type="email"
+              v-model="email"
+            ></v-text-field>
+            <br>
+            <v-text-field
+              label="Password"
+              type="password"
+              v-model="password"
+            ></v-text-field>
+            <br>
+            <div :key=error v-for="error in errors">{{error}}</div>
+            <v-btn class="cyan" dark @click="login">Login</v-btn>
+          </form>
+        </div>
       </v-card>
     </v-flex>
   </v-layout>

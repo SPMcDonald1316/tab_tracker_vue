@@ -8,7 +8,10 @@
       </v-btn>
 
       <v-toolbar-items>
-        <v-btn text>Browse</v-btn>
+        <v-btn
+          text
+          to='/songs'
+        >Browse</v-btn>
       </v-toolbar-items>
 
       <v-spacer></v-spacer>
@@ -43,7 +46,7 @@ export default {
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
-      this.$router.push('/')
+      this.$router.push('/login')
     }
   }
 }
