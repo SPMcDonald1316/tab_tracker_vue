@@ -1,36 +1,31 @@
 <template>
   <v-layout column justify-center>
     <v-flex>
-      <v-card class="white elevation-2">
-        <v-toolbar dense class="cyan" dark>
-          <v-toolbar-title>Login</v-toolbar-title>
-        </v-toolbar>
-
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <form>
-            <v-text-field
-              label="Email"
-              type="email"
-              v-model="email"
-            ></v-text-field>
-            <br>
-            <v-text-field
-              label="Password"
-              type="password"
-              v-model="password"
-            ></v-text-field>
-            <br>
-            <div :key=error v-for="error in errors">{{error}}</div>
-            <v-btn class="cyan" dark @click="login">Login</v-btn>
-          </form>
-        </div>
-      </v-card>
+      <panel title="Login">
+        <form>
+          <v-text-field
+            label="Email"
+            type="email"
+            v-model="email"
+          ></v-text-field>
+          <br>
+          <v-text-field
+            label="Password"
+            type="password"
+            v-model="password"
+          ></v-text-field>
+          <br>
+          <div :key=error v-for="error in errors">{{error}}</div>
+          <v-btn class="cyan" dark @click="login">Login</v-btn>
+        </form>
+      </panel>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import axios from 'axios'
+import Panel from './Panel'
 export default {
   data () {
     return {
@@ -58,6 +53,9 @@ export default {
           this.password = ''
         })
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="white elevation-2">
+  <v-card class="white elevation-2 ma-16">
     <v-toolbar dense class="cyan" dark>
       <v-toolbar-title>{{ title }}</v-toolbar-title>
     </v-toolbar>
