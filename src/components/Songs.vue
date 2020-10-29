@@ -24,7 +24,7 @@ export default {
   mounted () {
     axios.get('/api/songs')
       .then(response => {
-        this.songs = response.data.songs
+        this.songs = response.data
       })
   }
 }
