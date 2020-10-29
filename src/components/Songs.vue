@@ -9,11 +9,16 @@
           small
           absolute
           right
-          middl
+          middle
+          to='/songs/add'
         >
           <v-icon>add</v-icon>
         </v-btn>
         <div :key="song.id" v-for="song in songs">
+          {{song.title}} - {{song.artist}}
+          <v-spacer></v-spacer>
+          <v-btn class="cyan mx-1" dark>Edit</v-btn>
+          <v-btn class="cyan mx-1" dark>Delete</v-btn>
         </div>
       </panel>
     </v-flex>

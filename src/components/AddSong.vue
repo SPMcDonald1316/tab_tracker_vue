@@ -94,6 +94,7 @@ export default {
         tab: this.tab
       }
       axios.post('/api/songs', params)
+        .then(this.$router.push('/songs'))
         .catch(error => {
           console.log(error)
         })
