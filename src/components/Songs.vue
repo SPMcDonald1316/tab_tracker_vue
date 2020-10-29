@@ -2,6 +2,17 @@
   <v-layout column justify-center>
     <v-flex>
       <panel title="Songs">
+        <v-btn
+          slot="action"
+          class="cyan accent-2"
+          light
+          small
+          absolute
+          right
+          middl
+        >
+          <v-icon>add</v-icon>
+        </v-btn>
         <div :key="song.id" v-for="song in songs">
         </div>
       </panel>

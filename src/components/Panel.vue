@@ -2,6 +2,7 @@
   <v-card class="white elevation-2 ma-16">
     <v-toolbar dense class="cyan" dark>
       <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <slot name="action" />
     </v-toolbar>
 
     <div class="pl-4 pr-4 pt-2 pb-2">
