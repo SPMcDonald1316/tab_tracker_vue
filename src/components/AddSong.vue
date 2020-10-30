@@ -7,31 +7,43 @@
             label="Title"
             type="text"
             v-model="title"
+            required
+            :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Artist"
             type="text"
             v-model="artist"
+            required
+            :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Genre"
             type="text"
             v-model="genre"
+            required
+            :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Album"
             type="text"
             v-model="album"
+            required
+            :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Album Image Url"
             type="text"
             v-model="albumImg"
+            required
+            :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Youtube ID"
             type="text"
             v-model="youtubeId"
+            required
+            :rules=[required]
           ></v-text-field>
         </form>
       </panel>
@@ -44,14 +56,19 @@
             label="Lyrics"
             type="text"
             v-model="lyrics"
+            required
+            :rules=[required]
           ></v-textarea>
           <v-textarea
             label="Tab"
             type="text"
             v-model="tab"
+            required
+            :rules=[required]
           ></v-textarea>
         </form>
       </panel>
+      <div :key="error" v-for="error in errors">{{error}}</div>
       <v-btn
         class="cyan"
         dark
@@ -67,15 +84,16 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      title: '',
-      artist: '',
-      genre: '',
-      album: '',
-      albumImg: '',
-      youtubeId: '',
-      lyrics: '',
-      tab: '',
-      errors: []
+      title: null,
+      artist: null,
+      genre: null,
+      album: null,
+      albumImg: null,
+      youtubeId: null,
+      lyrics: null,
+      tab: null,
+      errors: [],
+      required: (value) => !!value || 'Required'
     }
   },
   components: {
@@ -94,9 +112,11 @@ export default {
         tab: this.tab
       }
       axios.post('/api/songs', params)
-        .then(this.$router.push('/songs'))
+        .then(response => {
+          this.$router.push('/songs')
+        })
         .catch(error => {
-          console.log(error)
+          this.errors = error.response.data.errors
         })
     }
   }
