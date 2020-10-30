@@ -68,7 +68,9 @@
           ></v-textarea>
         </form>
       </panel>
-      <div :key="error" v-for="error in errors">{{error}}</div>
+      <v-list :key="error" v-for="error in errors">
+        <v-list-item class="error" dark dense justify-center>{{error}}</v-list-item>
+      </v-list>
       <v-btn
         class="cyan"
         dark
