@@ -11,9 +11,8 @@
           right
           middle
           to='/songs/add'
-        >
-          <v-icon>add</v-icon>
-        </v-btn>
+        ><v-icon>add</v-icon></v-btn>
+
         <div class="song" :key="song.id" v-for="song in songs">
           <v-layout>
             <v-flex xs6>
@@ -30,7 +29,7 @@
               <v-btn
                 class="cyan"
                 dark
-                :to="{name: 'view-song', params: {id: song.id}}"
+                :to="{name: 'view-song', params: {songId: song.id}}"
               >View</v-btn>
             </v-flex>
             <v-flex xs6>
