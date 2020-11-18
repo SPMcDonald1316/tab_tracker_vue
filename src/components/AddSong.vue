@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    <v-flex xs4>
+    <v-flex xs4 class="mx-4">
       <panel title="Song Metadata">
         <form>
           <v-text-field
