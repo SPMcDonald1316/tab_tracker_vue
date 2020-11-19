@@ -5,6 +5,10 @@
     </v-flex>
 
     <v-flex xs6>
+      <you-tube :youtubeId="song.youtube_id" />
+    </v-flex>
+
+    <v-flex xs6>
       <panel title="Tabs">
         <textarea
           readonly
@@ -19,6 +23,8 @@
 import axios from 'axios'
 import Panel from '../Panel'
 import SongMetadata from './SongMetadata'
+import YouTube from './YouTube'
+
 export default {
   data () {
     return {
@@ -36,7 +42,8 @@ export default {
   },
   components: {
     Panel,
-    SongMetadata
+    SongMetadata,
+    YouTube
   }
 }
 </script>
