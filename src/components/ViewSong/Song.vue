@@ -1,29 +1,33 @@
 <template>
-  <v-layout>
-    <v-flex xs6 class="mx-2">
-      <song-metadata :song="song" />
-    </v-flex>
+  <div>
+    <v-layout>
+      <v-flex xs6 class="ma-2">
+        <song-metadata :song="song" />
+      </v-flex>
 
-    <v-flex xs6>
-      <you-tube :youtubeId="song.youtube_id" />
-    </v-flex>
+      <v-flex xs6 class="ma-2">
+        <you-tube :youtubeId="song.youtube_id" />
+      </v-flex>
+    </v-layout>
 
-    <v-flex xs6>
-      <panel title="Tabs">
-        <textarea
-          readonly
-          v-model="song.tab"
-        ></textarea>
-      </panel>
-    </v-flex>
-  </v-layout>
+    <v-layout>
+      <v-flex xs6 class="ma-2">
+        <tab :tab="song.tab" />
+      </v-flex>
+
+      <v-flex xs6 class="ma-2">
+        <lyrics :lyrics="song.lyrics" />
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Panel from '../Panel'
 import SongMetadata from './SongMetadata'
 import YouTube from './YouTube'
+import Lyrics from './Lyrics'
+import Tab from './Tab'
 
 export default {
   data () {
@@ -41,22 +45,14 @@ export default {
       })
   },
   components: {
-    Panel,
     SongMetadata,
-    YouTube
+    YouTube,
+    Lyrics,
+    Tab
   }
 }
 </script>
 
 <style scoped>
-  textarea {
-    width: 100%;
-    font-family: monospace;
-    border: none;
-    height: 600px;
-    border-style: none;
-    border-color: transparent;
-    overflow: auto;
-    padding: 20px;
-  }
+
 </style>
