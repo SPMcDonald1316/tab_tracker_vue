@@ -6,42 +6,42 @@
           <v-text-field
             label="Title"
             type="text"
-            v-model="title"
+            v-model="song.title"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Artist"
             type="text"
-            v-model="artist"
+            v-model="song.artist"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Genre"
             type="text"
-            v-model="genre"
+            v-model="song.genre"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Album"
             type="text"
-            v-model="album"
+            v-model="song.album"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Album Image Url"
             type="text"
-            v-model="albumImg"
+            v-model="song.albumImg"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Youtube ID"
             type="text"
-            v-model="youtubeId"
+            v-model="song.youtubeId"
             required
             :rules=[required]
           ></v-text-field>
@@ -55,14 +55,14 @@
           <v-textarea
             label="Lyrics"
             type="text"
-            v-model="lyrics"
+            v-model="song.lyrics"
             required
             :rules=[required]
           ></v-textarea>
           <v-textarea
             label="Tab"
             type="text"
-            v-model="tab"
+            v-model="song.tab"
             required
             :rules=[required]
           ></v-textarea>
@@ -86,14 +86,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      title: null,
-      artist: null,
-      genre: null,
-      album: null,
-      albumImg: null,
-      youtubeId: null,
-      lyrics: null,
-      tab: null,
+      song: {},
       errors: [],
       required: (value) => !!value || 'Required'
     }
@@ -104,14 +97,14 @@ export default {
   methods: {
     addSong () {
       const params = {
-        title: this.title,
-        artist: this.artist,
-        genre: this.genre,
-        album: this.album,
-        album_image: this.albumImg,
-        youtube_id: this.youtubeId,
-        lyrics: this.lyrics,
-        tab: this.tab
+        title: this.song.title,
+        artist: this.song.artist,
+        genre: this.song.genre,
+        album: this.song.album,
+        album_image: this.song.albumImg,
+        youtube_id: this.song.youtubeId,
+        lyrics: this.song.lyrics,
+        tab: this.song.tab
       }
       axios.post('/api/songs', params)
         .then(response => {
