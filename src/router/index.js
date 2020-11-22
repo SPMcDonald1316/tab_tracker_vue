@@ -50,7 +50,7 @@ const routes = [
     component: Song
   },
   {
-    path: 'songs/:songId/edit',
+    path: '/songs/:songId/edit',
     name: 'song-edit',
     component: EditSong
   }

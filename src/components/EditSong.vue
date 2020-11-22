@@ -6,42 +6,42 @@
           <v-text-field
             label="Title"
             type="text"
-            v-model="title"
+            v-model="song.title"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Artist"
             type="text"
-            v-model="artist"
+            v-model="song.artist"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Genre"
             type="text"
-            v-model="genre"
+            v-model="song.genre"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Album"
             type="text"
-            v-model="album"
+            v-model="song.album"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Album Image Url"
             type="text"
-            v-model="albumImg"
+            v-model="song.album_image"
             required
             :rules=[required]
           ></v-text-field>
           <v-text-field
             label="Youtube ID"
             type="text"
-            v-model="youtubeId"
+            v-model="song.youtube_id"
             required
             :rules=[required]
           ></v-text-field>
@@ -55,14 +55,14 @@
           <v-textarea
             label="Lyrics"
             type="text"
-            v-model="lyrics"
+            v-model="song.lyrics"
             required
             :rules=[required]
           ></v-textarea>
           <v-textarea
             label="Tab"
             type="text"
-            v-model="tab"
+            v-model="song.tab"
             required
             :rules=[required]
           ></v-textarea>
@@ -72,10 +72,10 @@
         <v-list-item class="error" dark dense justify-center>{{error}}</v-list-item>
       </v-list>
       <v-btn
-        class="cyan"
+        class="cyan my-4"
         dark
-        @click="addSong"
-      >Create Song</v-btn>
+        @click="editSong"
+      >Edit Song</v-btn>
     </v-flex>
   </v-layout>
 </template>
@@ -86,36 +86,38 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      title: null,
-      artist: null,
-      genre: null,
-      album: null,
-      albumImg: null,
-      youtubeId: null,
-      lyrics: null,
-      tab: null,
+      song: {},
       errors: [],
       required: (value) => !!value || 'Required'
     }
+  },
+  created () {
+    axios.get(`/api/songs/${this.$route.params.songId}`)
+      .then(response => {
+        this.song = response.data
+      })
+      .catch(error => {
+        this.errors = error.response.data.errors
+      })
   },
   components: {
     Panel
   },
   methods: {
-    addSong () {
+    editSong () {
       const params = {
-        title: this.title,
-        artist: this.artist,
-        genre: this.genre,
-        album: this.album,
-        album_image: this.albumImg,
-        youtube_id: this.youtubeId,
-        lyrics: this.lyrics,
-        tab: this.tab
+        title: this.song.title,
+        artist: this.song.artist,
+        genre: this.song.genre,
+        album: this.song.album,
+        album_image: this.song.album_image,
+        youtube_id: this.song.youtube_id,
+        lyrics: this.song.lyrics,
+        tab: this.song.tab
       }
-      axios.post('/api/songs', params)
+      axios.patch(`/api/songs/${this.$route.params.songId}`, params)
         .then(response => {
-          this.$router.push('/songs')
+          this.$router.push(`/songs/${this.$route.params.songId}`)
         })
         .catch(error => {
           this.errors = error.response.data.errors
